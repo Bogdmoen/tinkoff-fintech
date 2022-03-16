@@ -6,17 +6,23 @@ fun main() {
 
 fun makeRoute(perimeter: Int, villageCount: Int, distances: Array<Int>) {
 
-    val distanceToFirst = (perimeter - distances[distances.lastIndex]) + distances[0]
+    if(villageCount <= 1) {
+        println("неверный формат данных")
+        return
+    }
+
+    val trimmedDistances = distances.take(villageCount)
+    val distanceToFirst = (perimeter - trimmedDistances[trimmedDistances.lastIndex]) + trimmedDistances[0]
     val result:Int
     var tmpClockWise = 0
     var tmpCounterClockWise = distanceToFirst
 
-    for(i in 0 until distances.size - 1) {
-        tmpClockWise += distances[i + 1] - distances[i]
+    for(i in 0 until trimmedDistances.size - 1) {
+        tmpClockWise += trimmedDistances[i + 1] - trimmedDistances[i]
     }
 
-    for(i in 1 until distances.size - 1) {
-        tmpCounterClockWise += distances[i + 1] - distances[i]
+    for(i in 1 until trimmedDistances.size - 1) {
+        tmpCounterClockWise += trimmedDistances[i + 1] - trimmedDistances[i]
     }
 
     result = tmpClockWise.coerceAtMost(tmpCounterClockWise)
