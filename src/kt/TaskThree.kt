@@ -22,7 +22,7 @@ fun cutLogs(cuts: Int, logs: List<Int>) {
             break
         }
         cutOne = Random.nextDouble(0.1, logsDouble[0])
-        cutTwo = logs[0] - cutOne
+        cutTwo = logsDouble[0] - cutOne
 
         logsDouble = logsDouble.drop(1).toMutableList()
         logsDouble.add(cutOne)
